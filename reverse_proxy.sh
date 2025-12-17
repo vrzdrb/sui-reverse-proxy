@@ -3,7 +3,7 @@
 ###################################
 ### Global values
 ###################################
-VERSION_MANAGER='1.4.3f'
+VERSION_MANAGER='1.4.5'
 VERSION=v2.4.11
 
 DIR_REVERSE_PROXY="/usr/local/reverse_proxy/"
@@ -186,8 +186,6 @@ E[64]="Password:"
 R[64]="Пароль:"
 E[65]="Log file path:"
 R[65]="Путь к лог файлу:"
-E[66]="Prometheus monitor."
-R[66]="Мониторинг Prometheus."
 E[67]="Set up the Telegram bot? [y/N]:"
 R[67]="Настроить telegram бота? [y/N]:"
 E[68]="Bot:\n  1. IP limit (default) \n  2. Torrent ban"
@@ -218,10 +216,6 @@ E[80]="Random template name:"
 R[80]="Случайное имя шаблона:"
 E[81]="Enter your domain CNAME record:"
 R[81]="Введите доменную запись типа CNAME:"
-E[82]="Enter Shell in a box path:"
-R[82]="Введите путь к Shell in a box:"
-E[83]="Terminal emulator Shell in a box."
-R[83]="Эмулятор терминала Shell in a box."
 E[84]="0. Exit script"
 R[84]="0. Выход из скрипта"
 E[85]="Press Enter to return to the menu..."
@@ -238,22 +232,18 @@ E[90]="4. Change the domain name for the proxy."
 R[90]="4. Изменить доменное имя для прокси."
 E[91]="5. Forced reissue of certificates."
 R[91]="5. Принудительный перевыпуск сертификатов."
-E[92]="6. Integrate custom JSON subscription."
-R[92]="6. Интеграция кастомной JSON подписки."
-E[93]="7. Copy someone else's website to your server."
-R[93]="7. Скопировать чужой сайт на ваш сервер."
-E[94]="8. Disable IPv6."
-R[94]="8. Отключение IPv6."
-E[95]="9. Enable IPv6."
-R[95]="9. Включение IPv6."
-E[96]="10. Find out the size of the directory."
-R[96]="10. Узнать размер директории."
+E[93]="6. Copy someone else's website to your server."
+R[93]="6. Скопировать чужой сайт на ваш сервер."
+E[94]="7. Disable IPv6."
+R[94]="7. Отключение IPv6."
+E[95]="8. Enable IPv6."
+R[95]="8. Включение IPv6."
+E[96]="9. Find out the size of the directory."
+R[96]="9. Узнать размер директории."
 E[97]="Client migration initiation (experimental feature)."
 R[97]="Начало миграции клиентов (экспериментальная функция)."
 E[98]="Client migration is complete."
 R[98]="Миграция клиентов завершена."
-E[99]="Settings custom JSON subscription."
-R[99]="Настройки пользовательской JSON-подписки."
 E[100]="Restore from backup."
 R[100]="Восстановление из резервной копии."
 E[101]="Backups:"
@@ -264,12 +254,12 @@ E[103]="Restoration is complete."
 R[103]="Восстановление завершено."
 E[104]="Restoration is complete."
 R[104]="Выбран архив:"
-E[105]="11. Traffic statistics."
-R[105]="11. Статистика трафика."
+E[105]="10. Traffic statistics."
+R[105]="10. Статистика трафика."
 E[106]="Traffic statistics:\n  1. By years \n  2. By months \n  3. By days \n  4. By hours"
 R[106]="Статистика трафика:\n  1. По годам \n  2. По месяцам \n  3. По дням \n  4. По часам"
-E[107]="12. Change language."
-R[107]="12. Изменить язык."
+E[107]="11. Change language."
+R[107]="11. Изменить язык."
 
 ###################################
 ### Help output
@@ -278,10 +268,9 @@ show_help() {
   echo
   echo "Usage: reverse_proxy [-u|--utils <true|false>] [-d|--dns <true|false>] [-a|--addu <true|false>]"
   echo "         [-r|--autoupd <true|false>] [-b|--bbr <true|false>] [-i|--ipv6 <true|false>] [-w|--warp <true|false>]"
-  echo "         [-c|--cert <true|false>] [-m|--mon <true|false>] [-l|--shell <true|false>] [-n|--nginx <true|false>]"
-  echo "         [-p|--panel <true|false>] [--custom <true|false>] [-f|--firewall <true|false>] [-s|--ssh <true|false>]"
-  echo "         [-t|--tgbot <true|false>] [-g|--generate <true|false>] [-x|--skip-check <true|false>] [-o|--subdomain <true|false>]"
-  echo "         [--update] [-h|--help]"
+  echo "         [-c|--cert <true|false>] [-n|--nginx <true|false>] [-p|--panel <true|false>] [-f|--firewall <true|false>]"
+  echo "         [-s|--ssh <true|false>] [-t|--tgbot <true|false>] [-g|--generate <true|false>] [-x|--skip-check <true|false>]"
+  echo "         [-o|--subdomain <true|false>] [--update] [-h|--help]"
   echo
   echo "  -u, --utils <true|false>       Additional utilities                             (default: ${defaults[utils]})"
   echo "                                 Дополнительные утилиты"
@@ -299,16 +288,10 @@ show_help() {
   echo "                                 Настройка WARP"
   echo "  -c, --cert <true|false>        Certificate issuance for domain                  (default: ${defaults[cert]})"
   echo "                                 Выпуск сертификатов для домена"
-  echo "  -m, --mon <true|false>         Monitoring services (node_exporter)              (default: ${defaults[mon]})"
-  echo "                                 Сервисы мониторинга (node_exporter)"
-  echo "  -l, --shell <true|false>       Shell In A Box installation                      (default: ${defaults[shell]})"
-  echo "                                 Установка Shell In A Box"
   echo "  -n, --nginx <true|false>       NGINX installation                               (default: ${defaults[nginx]})"
   echo "                                 Установка NGINX"
   echo "  -p, --panel <true|false>       Panel installation for user management           (default: ${defaults[panel]})"
   echo "                                 Установка панели для управления пользователями"
-  echo "      --custom <true|false>      Custom JSON subscription                         (default: ${defaults[custom]})"
-  echo "                                 Кастомная JSON-подписка"  
   echo "  -f, --firewall <true|false>    Firewall configuration                           (default: ${defaults[firewall]})"
   echo "                                 Настройка файрвола"
   echo "  -s, --ssh <true|false>         SSH access                                       (default: ${defaults[ssh]})"
@@ -369,11 +352,8 @@ read_defaults_from_file() {
     defaults[ipv6]=true
     defaults[warp]=false
     defaults[cert]=true
-    defaults[mon]=false
-    defaults[shell]=false
     defaults[nginx]=true
     defaults[panel]=true
-    defaults[custom]=true
     defaults[firewall]=true
     defaults[ssh]=true
     defaults[tgbot]=false
@@ -396,11 +376,8 @@ defaults[bbr]=false
 defaults[ipv6]=false
 defaults[warp]=false
 defaults[cert]=false
-defaults[mon]=false
-defaults[shell]=false
 defaults[nginx]=true
 defaults[panel]=true
-defaults[custom]=true
 defaults[firewall]=false
 defaults[ssh]=false
 defaults[tgbot]=false
@@ -450,11 +427,8 @@ declare -A arg_map=(
   [-i]=ipv6       [--ipv6]=ipv6
   [-w]=warp       [--warp]=warp
   [-c]=cert       [--cert]=cert
-  [-m]=mon        [--mon]=mon
-  [-l]=shell      [--shell]=shell
   [-n]=nginx      [--nginx]=nginx
   [-p]=panel      [--panel]=panel
-                  [--custom]=custom
   [-f]=firewall   [--firewall]=firewall
   [-s]=ssh        [--ssh]=ssh
   [-t]=tgbot      [--tgbot]=tgbot
@@ -465,7 +439,7 @@ declare -A arg_map=(
 
 parse_args() {
   local opts
-  opts=$(getopt -o hu:d:a:r:b:i:w:c:m:l:n:p:f:s:t:g:x:o --long utils:,dns:,addu:,autoupd:,bbr:,ipv6:,warp:,cert:,mon:,shell:,nginx:,panel:,custom:,firewall:,ssh:,tgbot:,generate:,skip-check:,subdomain:,update,depers,help -- "$@")
+  opts=$(getopt -o hu:d:a:r:b:i:w:c:n:p:f:s:t:g:x:o --long utils:,dns:,addu:,autoupd:,bbr:,ipv6:,warp:,cert:,nginx:,panel:,firewall:,ssh:,tgbot:,generate:,skip-check:,subdomain:,update,depers,help -- "$@")
 
   if [[ $? -ne 0 ]]; then
     return 1
@@ -767,15 +741,6 @@ validate_path() {
   # Проверка на пустое значение
   while true; do
     case "$VARIABLE_NAME" in
-      METRICS)
-        reading " $(text 24) " PATH_VALUE
-        ;;
-      SHELLBOX)
-        reading " $(text 24) " PATH_VALUE
-        ;;
-      ADGUARDPATH)
-        reading " $(text 25) " PATH_VALUE
-        ;;
       WEB_BASE_PATH)
         reading " $(text 26) " PATH_VALUE
         ;;
@@ -803,15 +768,6 @@ validate_path() {
 
   # Присваиваем значение переменной
   case "$VARIABLE_NAME" in
-    METRICS)
-      export METRICS="$ESCAPED_PATH"
-      ;;
-    SHELLBOX)
-      export SHELLBOX="$ESCAPED_PATH"
-      ;;
-    ADGUARDPATH)
-      export ADGUARDPATH="$ESCAPED_PATH"
-      ;;
     WEB_BASE_PATH)
       export WEB_BASE_PATH="$ESCAPED_PATH"
       ;;
@@ -822,36 +778,6 @@ validate_path() {
       export SUB_JSON_PATH="$ESCAPED_PATH"
       ;;
   esac
-}
-
-###################################
-### DNS Selection
-###################################
-choise_dns () {
-  while true; do
-    hint " $(text 31) \n" && reading " $(text 1) " CHOISE_DNS
-    case $CHOISE_DNS in
-      1)
-        info " $(text 32) "
-        break
-        ;;
-      2)
-        info " $(text 25) "
-        if [[ ${args[generate]} == "true" ]]; then
-          ADGUARDPATH=$(eval ${generate[path]})
-        else
-          echo
-          tilda "$(text 10)"
-          validate_path ADGUARDPATH
-        fi
-        echo
-        break
-        ;;
-      *)
-        info " $(text 33) "
-        ;;
-    esac
-  done
 }
 
 ###################################
@@ -882,8 +808,6 @@ data_entry() {
 
   tilda "$(text 10)"
 
-  choise_dns
-
   generate_path_cdn
 
   if [[ ${args[generate]} == "true" ]]; then
@@ -897,22 +821,6 @@ data_entry() {
     validate_path SUB_PATH
     echo
     validate_path SUB_JSON_PATH
-  fi
-  if [[ ${args[mon]} == "true" ]]; then
-    if [[ ${args[generate]} == "true" ]]; then
-      METRICS=$(eval ${generate[path]})
-    else
-      echo
-      validate_path METRICS
-    fi
-  fi
-  if [[ ${args[shell]} == "true" ]]; then
-    if [[ ${args[generate]} == "true" ]]; then
-      SHELLBOX=$(eval ${generate[path]})
-    else
-      echo
-      validate_path SHELLBOX
-    fi
   fi
 
   if [[ ${args[ssh]} == "true" ]]; then
@@ -1068,7 +976,7 @@ installation_of_utilities() {
 ###################################
 ### DNS Systemd-resolved
 ###################################
-dns_systemd_resolved() {
+dns_encryption() {
   tee /etc/systemd/resolved.conf <<EOF
 [Resolve]
 DNS=1.1.1.1 8.8.8.8 8.8.4.4
@@ -1078,92 +986,6 @@ DNSSEC=yes
 DNSOverTLS=yes
 EOF
   systemctl restart systemd-resolved.service
-}
-
-###################################
-### DNS Adguardhome
-###################################
-dns_adguard_home() {
-  rm -rf AdGuardHome_*
-  while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz; do
-    warning " $(text 38) "
-    sleep 3
-  done
-  tar -zxvf AdGuardHome_linux_amd64.tar.gz
-
-  AdGuardHome/AdGuardHome -s install
-  HASH=$(htpasswd -B -C 10 -n -b ${USERNAME} ${PASSWORD} | cut -d ":" -f 2)
-
-  rm -f AdGuardHome/AdGuardHome.yaml
-  while ! wget -q --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://github.com/cortez24rus/xui-reverse-proxy/raw/refs/heads/main/adh/AdGuardHome.yaml" -O AdGuardHome/AdGuardHome.yaml; do
-    warning " $(text 38) "
-    sleep 3
-  done
-
-  sleep 1
-  sed -i \
-    -e "s|username|${USERNAME}|g" \
-    -e "s|hash|${HASH}|g" \
-    AdGuardHome/AdGuardHome.yaml
-
-  AdGuardHome/AdGuardHome -s restart
-}
-
-###################################
-### Dns systemd for adguard
-###################################
-dns_systemd_resolved_for_adguard() {
-  tee /etc/systemd/resolved.conf <<EOF
-[Resolve]
-DNS=127.0.0.1
-#FallbackDNS=
-#Domains=
-#DNSSEC=no
-DNSOverTLS=no
-DNSStubListener=no
-EOF
-  systemctl restart systemd-resolved.service
-}
-
-###################################
-### DNS menu
-###################################
-dns_encryption() {
-  info " $(text 37) "
-  dns_systemd_resolved
-  case $CHOISE_DNS in
-    1)
-      COMMENT_AGH=""
-      tilda "$(text 10)"
-      ;;
-
-    2)
-      mkdir -p /etc/nginx/locations/
-
-      cat > /etc/nginx/locations/adguard.conf <<EOF
-location /${ADGUARDPATH}/ {
-  if (\$hack = 1) {return 404;}
-  proxy_set_header Host \$host;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header Range \$http_range;
-  proxy_set_header If-Range \$http_if_range;
-  proxy_redirect /login.html /${ADGUARDPATH}/login.html;
-  proxy_pass http://127.0.0.1:8081/;
-  break;
-}
-EOF
-      dns_adguard_home
-      dns_systemd_resolved_for_adguard
-      tilda "$(text 10)"
-      ;;
-
-    *)
-      warning " $(text 33)"
-      dns_encryption
-      ;;
-  esac
 }
 
 ###################################
@@ -1246,20 +1068,15 @@ enable_bbr() {
 ###################################
 disable_ipv6() {
   info " $(text 42) "
-  interface_name=$(ifconfig -s | awk 'NR==2 {print $1}')
 
-  if ! grep -q "net.ipv6.conf.all.disable_ipv6 = 1" /etc/sysctl.conf; then
-      echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
-  fi
-  if ! grep -q "net.ipv6.conf.default.disable_ipv6 = 1" /etc/sysctl.conf; then
-      echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
-  fi
-  if ! grep -q "net.ipv6.conf.lo.disable_ipv6 = 1" /etc/sysctl.conf; then
-      echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
-  fi
-  if ! grep -q "net.ipv6.conf.$interface_name.disable_ipv6 = 1" /etc/sysctl.conf; then
-      echo "net.ipv6.conf.$interface_name.disable_ipv6 = 1" >> /etc/sysctl.conf
-  fi
+  # Создаем отдельный файл конфигурации для отключения IPv6
+  cat > /etc/sysctl.d/99-disable-ipv6.conf << 'EOF'
+# Полное отключение IPv6 для всех интерфейсов
+net.ipv6.conf.all.disable_ipv6 = 1
+
+# Отключение IPv6 по умолчанию для новых интерфейсов
+net.ipv6.conf.default.disable_ipv6 = 1
+EOF
 
   sysctl -p
   tilda "$(text 10)"
@@ -1270,14 +1087,11 @@ disable_ipv6() {
 ###################################
 enable_ipv6() {
   info " $(text 42) "
-  interface_name=$(ifconfig -s | awk 'NR==2 {print $1}')
 
-  sed -i "/net.ipv6.conf.all.disable_ipv6 = 1/d" /etc/sysctl.conf
-  sed -i "/net.ipv6.conf.default.disable_ipv6 = 1/d" /etc/sysctl.conf
-  sed -i "/net.ipv6.conf.lo.disable_ipv6 = 1/d" /etc/sysctl.conf
-  sed -i "/net.ipv6.conf.$interface_name.disable_ipv6 = 1/d" /etc/sysctl.conf
-
+  # Удаляем файл конфигурации, отключающий IPv6
+  rm -f /etc/sysctl.d/99-disable-ipv6.conf
   echo -e "IPv6 включен"
+
   sysctl -p
   tilda "$(text 10)"
 }
@@ -1293,6 +1107,8 @@ swapfile() {
   chmod 600 /swapfile
   mkswap /swapfile
   swapon /swapfile
+  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+  swapon -a
   swapon --show
 
   cat > ${DIR_REVERSE_PROXY}restart_warp.sh <<EOF
@@ -1383,75 +1199,8 @@ EOF
     fi
   done
 
+  echo "renew_hook = systemctl reload nginx" >> /etc/letsencrypt/renewal/${DOMAIN}.conf
   add_cron_rule "0 5 1 */2 * certbot -q renew"
-  tilda "$(text 10)"
-}
-
-###################################
-### Node exporter
-###################################
-monitoring() {
-  info " $(text 66) "
-  mkdir -p /etc/nginx/locations/
-  bash <(curl -Ls https://github.com/cortez24rus/grafana-prometheus/raw/refs/heads/main/prometheus_node_exporter.sh)
-
-  cat > /etc/nginx/locations/monitoring.conf <<EOF
-location /${METRICS} {
-  if (\$hack = 1) {return 404;}
-  auth_basic "Restricted Content";
-  auth_basic_user_file /etc/nginx/.htpasswd;
-  proxy_pass http://127.0.0.1:9100/metrics;
-  proxy_set_header Host \$host;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-  proxy_set_header X-Forwarded-Proto \$scheme;
-  break;
-}
-EOF
-
-  tilda "$(text 10)"
-}
-
-###################################
-### Shell In A Box
-###################################
-shellinabox() {
-  info " $(text 83) "
-  apt-get install shellinabox
-  mkdir -p /etc/nginx/locations/
-
-  cat > /etc/default/shellinabox <<EOF
-# Should shellinaboxd start automatically
-SHELLINABOX_DAEMON_START=1
-# TCP port that shellinboxds webserver listens on
-SHELLINABOX_PORT=4200
-# Parameters that are managed by the system and usually should not need
-# changing:
-# SHELLINABOX_DATADIR=/var/lib/shellinabox
-# SHELLINABOX_USER=shellinabox
-# SHELLINABOX_GROUP=shellinabox
-# Any optional arguments (e.g. extra service definitions).  Make sure
-# that that argument is quoted.
-#   Beeps are disabled because of reports of the VLC plugin crashing
-#   Firefox on Linux/x86_64.
-SHELLINABOX_ARGS="--no-beep --localhost-only --disable-ssl"
-EOF
-
-  cat > /etc/nginx/locations/shellinabox.conf <<EOF
-location /${SHELLBOX} {
-  if (\$hack = 1) {return 404;}
-  auth_basic "Restricted Content";
-  auth_basic_user_file /etc/nginx/.htpasswd;
-  proxy_pass http://127.0.0.1:4200;
-  proxy_set_header Host \$host;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-  proxy_set_header X-Forwarded-Proto \$scheme;
-  break;
-}
-EOF
-
-  systemctl restart shellinabox
   tilda "$(text 10)"
 }
 
@@ -2338,124 +2087,6 @@ install_panel() {
 }
 
 ###################################
-### Custom subscription json
-###################################
-custom_sub_json() {
-  cat > /etc/nginx/locations/webpagesub.conf <<EOF
-# Web Page Subscription Path
-location ~ ^/${WEB_SUB_PATH} {
-  default_type application/json;
-  root /var/www/subpage;
-  index index.html;
-  try_files /index.html =404;
-}
-EOF
-
-  cat > /etc/nginx/locations/clash_sub.conf <<EOF
-# Clash Meta Subscription Path
-location ~ ^/${WEB_SUB_PATH}/clashmeta/(.+)$ {
-  default_type text/plain;
-  ssi on;
-  ssi_types text/plain;
-  set \$subid \$1;
-  root /var/www/subpage;
-  try_files /clash.yaml =404;
-}
-EOF
-
-  cat > /etc/nginx/locations/subsingbox.conf <<EOF
-# Sub2sing-box
-location /${SUB2_SINGBOX_PATH}/ {
-  proxy_redirect off;
-  proxy_set_header Host \$host;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-  proxy_pass http://127.0.0.1:8080/;
-}
-EOF
-}
-
-###################################
-### Settings web sub page
-###################################
-settings_web() {
-  DEST_DIR_SUB_PAGE="/var/www/subpage"
-  DEST_FILE_SUB_PAGE="$DEST_DIR_SUB_PAGE/index.html"
-  DEST_FILE_CLASH_SUB="$DEST_DIR_SUB_PAGE/clash.yaml"
-  sudo mkdir -p "$DEST_DIR_SUB_PAGE"
-
-  URL_SUB_PAGE="https://github.com/legiz-ru/x-ui-pro/raw/master/sub-3x-ui.html"
-  sudo curl -L "$URL_SUB_PAGE" -o "$DEST_FILE_SUB_PAGE"
-  URL_CLASH_SUB="https://github.com/legiz-ru/x-ui-pro/raw/master/clash/clash.yaml"
-  sudo curl -L "$URL_CLASH_SUB" -o "$DEST_FILE_CLASH_SUB"
-
-  sed -i "s/\${DOMAIN}/$DOMAIN/g" "$DEST_FILE_SUB_PAGE"
-  sed -i "s/\${DOMAIN}/$DOMAIN/g" "$DEST_FILE_CLASH_SUB"
-  sed -i "s#\${SUB_JSON_PATH}#$SUB_JSON_PATH#g" "$DEST_FILE_SUB_PAGE"
-  sed -i "s#\${SUB_PATH}#$SUB_PATH#g" "$DEST_FILE_SUB_PAGE"
-  sed -i "s#\${SUB_PATH}#$SUB_PATH#g" "$DEST_FILE_CLASH_SUB"
-  sed -i "s|sub.legiz.ru|$DOMAIN/$SUB2_SINGBOX_PATH|g" "$DEST_FILE_SUB_PAGE"
-}
-
-###################################
-### Install sing-box converter
-###################################
-install_singbox_converter() {
-  wget -q -P /root/ https://github.com/legiz-ru/sub2sing-box/releases/download/v0.0.9/sub2sing-box_0.0.9_linux_amd64.tar.gz
-  tar -xvzf /root/sub2sing-box_0.0.9_linux_amd64.tar.gz -C /root/ --strip-components=1 sub2sing-box_0.0.9_linux_amd64/sub2sing-box
-  mv /root/sub2sing-box /usr/bin/
-  chmod +x /usr/bin/sub2sing-box
-  rm /root/sub2sing-box_0.0.9_linux_amd64.tar.gz
-  su -c "/usr/bin/sub2sing-box server --bind 127.0.0.1 --port 8080 & disown" root
-}
-
-###################################
-### Update subscription json uri database
-###################################
-update_subjsonuri_db() {
-  sqlite3 $DEST_DB <<EOF
-UPDATE settings SET value = '${SUB_JSON_URI}' WHERE LOWER(key) LIKE '%subjsonuri%';
-EOF
-}
-
-###################################
-### Settings custom json
-###################################
-settings_custom_json() {
-  info " $(text 99) "
-  mkdir -p /etc/nginx/locations/
-  CONF_FILE="/etc/nginx/locations/webpagesub.conf"
-
-  while [[ -z "$DOMAIN" ]]; do
-    reading " $(text 13) " DOMAIN  # Запрашиваем домен
-    DOMAIN=$(clean_url "$DOMAIN")  # Очищаем домен
-  done
-
-  select_from_db
-  if [[ -f "$CONF_FILE" ]]; then
-    WEB_SUB_PATH=$(sed -n 's|location ~ \^/\([^ ]*\).*|\1|p' "$CONF_FILE")
-  else
-    WEB_SUB_PATH=$(eval "${generate[path]}")
-  fi
-  SUB2_SINGBOX_PATH=$(eval ${generate[path]})
-  SUB_JSON_URI=https://${DOMAIN}/${WEB_SUB_PATH}?name=
-
-  custom_sub_json
-  install_singbox_converter
-  settings_web
-
-  update_subjsonuri_db
-  if ! grep -Fq "include /etc/nginx/locations/*.conf;" /etc/nginx/conf.d/local.conf; then
-    sed -i '$ s/}/\n  # Enable locations\n  include \/etc\/nginx\/locations\/\*.conf;\n}/' /etc/nginx/conf.d/local.conf
-  fi
-  nginx -s reload
-
-  crontab -l | grep -v -- "sub2sing-box" | crontab -
-  add_cron_rule "@reboot /usr/bin/sub2sing-box server --bind 127.0.0.1 --port 8080"
-  tilda "$(text 10)"
-}
-
-###################################
 ### BACKUP DIRECTORIES
 ###################################
 backup_dir() {
@@ -2560,21 +2191,60 @@ enabling_security() {
 ssh_setup() {
   if [[ "${ANSWER_SSH,,}" == "y" ]]; then
     info " $(text 48) "
-    sed -i -e "
-      s/#Port/Port/g;
-      s/Port 22/Port 22/g;
-      s/#PermitRootLogin/PermitRootLogin/g;
-      s/PermitRootLogin yes/PermitRootLogin prohibit-password/g;
-      s/#PubkeyAuthentication/PubkeyAuthentication/g;
-      s/PubkeyAuthentication no/PubkeyAuthentication yes/g;
-      s/#PasswordAuthentication/PasswordAuthentication/g;
-      s/PasswordAuthentication yes/PasswordAuthentication no/g;
-      s/#PermitEmptyPasswords/PermitEmptyPasswords/g;
-      s/PermitEmptyPasswords yes/PermitEmptyPasswords no/g;
-    " /etc/ssh/sshd_config
+
+    # Создаем директорию для конфигураций, если ее нет
+    mkdir -p /etc/ssh/sshd_config.d
+    
+    # Создаем отдельный файл конфигурации
+    cat > /etc/ssh/sshd_config.d/99-security-settings.conf << 'EOF'
+# ============================================
+# Безопасные настройки SSH
+# Файл создан автоматически
+# ============================================
+
+# Основной порт SSH (можно изменить на нужный)
+Port 22
+
+# Запрещаем вход под root с паролем, но разрешаем по ключу
+PermitRootLogin prohibit-password
+
+# Обязательно включаем аутентификацию по ключам
+PubkeyAuthentication yes
+
+# Отключаем аутентификацию по паролю (используйте только если уже настроили ключи!)
+PasswordAuthentication no
+
+# Запрещаем пустые пароли
+PermitEmptyPasswords no
+
+# Дополнительные рекомендуемые настройки безопасности:
+# Отключаем аутентификацию GSSAPI (если не используется)
+GSSAPIAuthentication no
+
+# Включаем использование только протокола SSH 2
+Protocol 2
+
+# Отключаем перенаправление X11 (если не нужно)
+X11Forwarding no
+
+# Лимит попыток входа
+MaxAuthTries 3
+MaxSessions 5
+
+# Таймауты для безопасности
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# Отключаем DNS-разрешение для ускорения подключения
+UseDNS no
+
+# Отключаем поддержку устаревших методов аутентификации
+ChallengeResponseAuthentication no
+KerberosAuthentication no
+EOF
 
     bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/motd/refs/heads/main/install.sh)
-    systemctl restart ssh
+    systemctl restart sshd
     tilda "$(text 10)"
   fi
 }
@@ -2590,18 +2260,6 @@ data_output() {
   out_data " $(text 59) " "https://${DOMAIN}/${WEB_BASE_PATH}/"
   out_data " $(text 60) " "${SUB_URI}user"
   echo
-  if [[ $CHOISE_DNS = "2" ]]; then
-    out_data " $(text 61) " "https://${DOMAIN}/${ADGUARDPATH}/login.html"
-    echo
-  fi
-  if [[ ${args[mon]} == "true" ]]; then
-    out_data " $(text 21) " "https://${DOMAIN}/${METRICS}/"
-    echo
-  fi
-  if [[ ${args[shell]} == "true" ]]; then
-    out_data " $(text 22) " "https://${DOMAIN}/${SHELLBOX}/"
-    echo
-  fi
   out_data " $(text 62) " "ssh -p 22 ${USERNAME}@${IP4}"
   echo
   out_data " $(text 63) " "$USERNAME"
@@ -2959,7 +2617,7 @@ log_clear() {
 ### Main function
 ###################################
 main() {
-  log_entry
+  # log_entry
   read_defaults_from_file
   parse_args "$@" || show_help
   [[ ${args[skip-check]} == "false" ]] && check_root
@@ -2980,14 +2638,13 @@ main() {
     info " $(text 90) "                      # 4. Change domain
     info " $(text 91) "                      # 5. Renew cert
     echo
-    info " $(text 92) "                      # 6. Custom json
-    info " $(text 93) "                      # 7. Steal web site
-    info " $(text 94) "                      # 8. Disable IPv6
-    info " $(text 95) "                      # 9. Enable IPv6
+    info " $(text 93) "                      # 6. Steal web site
+    info " $(text 94) "                      # 7. Disable IPv6
+    info " $(text 95) "                      # 8. Enable IPv6
     echo
-    info " $(text 96) "                      # 10. Directory size
-    info " $(text 105) "                     # 11. Traffic statistics
-    info " $(text 107) "                     # 12. Change language
+    info " $(text 96) "                      # 9. Directory size
+    info " $(text 105) "                     # 10. Traffic statistics
+    info " $(text 107) "                     # 11. Change language
     echo
     info " $(text 84) "                      # Exit
     tilda "|--------------------------------------------------------------------------|"
@@ -3008,14 +2665,11 @@ main() {
         [[ ${args[ipv6]} == "true" ]] && disable_ipv6
       	[[ ${args[warp]} == "true" ]] && warp
         [[ ${args[cert]} == "true" ]] && issuance_of_certificates
-        [[ ${args[mon]} == "true" ]] && monitoring
-        [[ ${args[shell]} == "true" ]] && shellinabox
         write_defaults_to_file
         update_reverse_proxy
         random_site
         [[ ${args[nginx]} == "true" ]] && nginx_setup
         [[ ${args[panel]} == "true" ]] && install_panel
-        [[ ${args[custom]} == "true" ]] && settings_custom_json
         rotation_and_archiving
         [[ ${args[firewall]} == "true" ]] && enabling_security
         [[ ${args[ssh]} == "true" ]] && ssh_setup
@@ -3037,25 +2691,21 @@ main() {
         renew_cert
         ;;
       6)
-        DOMAIN=""
-        settings_custom_json
-        ;;
-      7)
         download_website
         ;;
-      8)
+      7)
         enable_ipv6
         ;;
-      9)
+      8)
         disable_ipv6
         ;;
-      10)
+      9)
         directory_size
         ;;
-      11)
+      10)
         traffic_stats
         ;;
-      12)
+      11)
         rm -rf ${DIR_REVERSE_PROXY}lang.conf
         select_language
         ;;
@@ -3070,7 +2720,7 @@ main() {
     info " $(text 85) "
     read -r dummy
   done
-  log_clear
+  # log_clear
 }
 
 main "$@"
