@@ -1,5 +1,4 @@
-# REVERSE_PROXY ([Russian](/README_RU.md)) <img src="https://img.shields.io/github/stars/cortez24rus/xui-reverse-proxy?style=social" /> 
-<p align="center"><a href="#"><img src="./media/xui.png" alt="Image" ></a></p>
+# REVERSE_PROXY ([Russian](/README_RU.md))
 
 -----
 
@@ -53,7 +52,6 @@ SERVER 2
    - Support for automatic configuration updates through subscription and JSON subscription with the ability to convert to formats for popular applications.
    - You must enable MUX (multiplexing TCP connections) in each client application
      - gRPC-TLS
-     - XHTTP-TLS
      - HTTPUpgrade-TLS
      - Websocket-TLS
    - The user “flow”: “xtls-rprx-vision” must be enabled
@@ -76,12 +74,6 @@ SERVER 2
    - Setting up Shell In A Box for secure, web-based SSH access to the server.
    - Updated SSH welcome message (motd) with useful system information, service status, and available updates.
    - VNStat integration for traffic monitoring, with the ability to get statistics by time.
-
------
-
-### REVERSE_PROXY_MANAGER:
-
-<p align="center"><a href="#"><img src="./media/reverse_proxy_manager.png" alt="Image"></a></p>
 
 -----
 
@@ -121,17 +113,13 @@ Usage: reverse-proxy [-u|--utils <true|false>] [-d|--dns <true|false>] [-a|--add
 
 To begin configuring the server, simply run the following command in a terminal:
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/reverse_proxy.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy.sh)
 ```
 
 ### Installing a random template for the website:
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
 ```
-
-The script will then prompt you for the necessary configuration information:
-
-<p align="center"><a href="#"><img src="./media/xui_rp_install.png" alt="Image"></a></p>
 
 ### Note: 
 - Once the configuration is complete, the script will display all the necessary links and login information for the administration panel.
@@ -152,5 +140,3 @@ The script will then prompt you for the necessary configuration information:
 
 -----
 
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/cortez24rus/xui-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/cortez24rus/xui-reverse-proxy)

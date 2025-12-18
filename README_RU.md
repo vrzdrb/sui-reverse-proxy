@@ -1,5 +1,4 @@
-# REVERSE_PROXY ([English](/README.md)) <img src="https://img.shields.io/github/stars/cortez24rus/xui-reverse-proxy?style=social" />
-<p align="center"><a href="#"><img src="./media/xui.png" alt="Image"></a></p>
+# REVERSE_PROXY ([English](/README.md))
 
 -----
 
@@ -47,19 +46,12 @@
 
 -----
 
-### REVERSE_PROXY_MANAGER:
-
-<p align="center"><a href="#"><img src="./media/reverse_proxy_manager_RU.png" alt="Image"></a></p>
-
------
-
 ### Включает в себя:
   
 1. Конфигурация прокси сервера:
    - Поддержка автоматического обновления конфигураций через подписку и JSON подписку с возможностью конвертации в форматы для популярных приложений.
    - Необходимо включать MUX (мультиплексирование TCP соединений) в каждом клиентском приложении
      - gRPC-TLS
-     - XHTTP-TLS
      - HTTPUpgrade-TLS
      - Websocket-TLS
    - Необходимо включать у пользователя "flow": "xtls-rprx-vision"
@@ -123,17 +115,13 @@
 
 Для начала настройки сервера выполните следующую команду в терминале:
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/reverse_proxy.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy.sh)
 ```
 
 ### Установка случайного шаблона для веб-сайта:
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy_random_site.sh)
 ```
-
-Скрипт запросит у вас необходимую конфигурационную информацию:
-
-<p align="center"><a href="#"><img src="./media/xui_rp_install_RU.png" alt="Image"></a></p>
 
 ### Примечание: 
 - После завершения настройки скрипт отобразит все необходимые ссылки и данные для входа в административную панель.
@@ -153,6 +141,3 @@ bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/
 >Если вы не уверены, нарушает ли использование данного инструмента или его компонентов законодательство вашей страны- откажитесь от любого взаимодействия с данным инструментом.
 
 -----
-
-## Количество звезд по времени
-[![Stargazers over time](https://starchart.cc/cortez24rus/xui-reverse-proxy.svg?variant=adaptive)](https://starchart.cc/cortez24rus/xui-reverse-proxy)

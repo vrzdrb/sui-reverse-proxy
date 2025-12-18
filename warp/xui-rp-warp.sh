@@ -7,16 +7,16 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-mkdir -p /usr/local/xui-rp/
+mkdir -p /usr/local/sui-rp/
 
 echo "Попытка скачать пакет..."
-while ! wget --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://pkg.cloudflareclient.com/pool/$(grep "VERSION_CODENAME=" /etc/os-release | cut -d "=" -f 2)/main/c/cloudflare-warp/cloudflare-warp_2024.6.497-1_amd64.deb" -O /usr/local/xui-rp/cloudflare-warp_2024.6.497-1_amd64.deb; do
+while ! wget --progress=dot:mega --timeout=30 --tries=10 --retry-connrefused "https://pkg.cloudflareclient.com/pool/$(grep "VERSION_CODENAME=" /etc/os-release | cut -d "=" -f 2)/main/c/cloudflare-warp/cloudflare-warp_2024.6.497-1_amd64.deb" -O /usr/local/sui-rp/cloudflare-warp_2024.6.497-1_amd64.deb; do
     echo "Не удалось скачать. Повторная попытка через 3 секунды..."
     sleep 3
 done
 echo "Скачивание завершено успешно."
 
-cd /usr/local/xui-rp/
+cd /usr/local/sui-rp/
 apt install -y ./cloudflare-warp_2024.6.497-1_amd64.deb
 rm -rf cloudflare-warp_*
 cd ~/

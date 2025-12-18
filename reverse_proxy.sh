@@ -9,10 +9,10 @@ VERSION=v2.4.11
 DIR_REVERSE_PROXY="/usr/local/reverse_proxy/"
 LANG_FILE="/usr/local/reverse_proxy/lang.conf"
 DEFAULT_FLAGS="/usr/local/reverse_proxy/default.conf"
-DEST_DB="/etc/x-ui/x-ui.db"
+DEST_DB="/etc/s-ui/s-ui.db"
 
-SCRIPT_URL="https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/reverse_proxy.sh"
-DB_SCRIPT_URL="https://raw.githubusercontent.com/cortez24rus/xui-reverse-proxy/refs/heads/main/database/x-ui.db"
+SCRIPT_URL="https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy.sh"
+DB_SCRIPT_URL="https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/database/s-ui.db"
 
 ###################################
 ### Initialization and Declarations
@@ -70,8 +70,8 @@ E[6]="It is recommended to perform the following actions before running the scri
 R[6]="Перед запуском скрипта рекомендуется выполнить следующие действия"
 E[7]="Annihilation of the system!"
 R[7]="Аннигиляция системы!"
-E[8]="Start the XRAY installation? Choose option [y/N]:"
-R[8]="Начать установку XRAY? Выберите опцию [y/N]:"
+E[8]="Start the Sing-box installation? Choose option [y/N]:"
+R[8]="Начать установку Sing-box? Выберите опцию [y/N]:"
 E[9]="CANCEL"
 R[9]="ОТМЕНА"
 E[10]="\n|--------------------------------------------------------------------------|\n"
@@ -146,8 +146,8 @@ E[44]="Issuing certificates."
 R[44]="Выдача сертификатов."
 E[45]="Configuring NGINX."
 R[45]="Настройка NGINX."
-E[46]="Setting up the panel for Xray."
-R[46]="Настройка панели для Xray."
+E[46]="Setting up the panel for Sing-box."
+R[46]="Настройка панели для Sing-box."
 E[47]="Configuring UFW."
 R[47]="Настройка UFW."
 E[48]="Configuring SSH."
@@ -194,8 +194,8 @@ E[69]="Enter the Telegram bot token for IP limit, Torrent ban:"
 R[69]="Введите токен Telegram бота для IP limit, Torrent ban:"
 E[70]="Secret key:"
 R[70]="Секретный ключ:"
-E[71]="Current operating system is \$SYS.\\\n The system lower than \$SYSTEM \${MAJOR[int]} is not supported. Feedback: [https://github.com/cortez24rus/xui-reverse-proxy/issues]"
-R[71]="Текущая операционная система: \$SYS.\\\n Система с версией ниже, чем \$SYSTEM \${MAJOR[int]}, не поддерживается. Обратная связь: [https://github.com/cortez24rus/xui-reverse-proxy/issues]"
+E[71]="Current operating system is \$SYS.\\\n The system lower than \$SYSTEM \${MAJOR[int]} is not supported. Feedback: [https://github.com/vrzdrb/sui-reverse-proxy/issues]"
+R[71]="Текущая операционная система: \$SYS.\\\n Система с версией ниже, чем \$SYSTEM \${MAJOR[int]}, не поддерживается. Обратная связь: [https://github.com/vrzdrb/sui-reverse-proxy/issues]"
 E[72]="Install dependence-list:"
 R[72]="Список зависимостей для установки:"
 E[73]="All dependencies already exist and do not need to be installed additionally."
@@ -613,12 +613,13 @@ check_ip() {
 ### Banner
 ###################################
 banner_xray() {
-  echo
-  echo " █░█ █░░█ ░▀░ ░░ █▀▀█ █▀▀ ▀█░█▀ █▀▀ █▀▀█ █▀▀ █▀▀ ░░ █▀▀█ █▀▀█ █▀▀█ █░█ █░░█  "
-  echo " ▄▀▄ █░░█ ▀█▀ ▀▀ █▄▄▀ █▀▀ ░█▄█░ █▀▀ █▄▄▀ ▀▀█ █▀▀ ▀▀ █░░█ █▄▄▀ █░░█ ▄▀▄ █▄▄█  "
-  echo " ▀░▀ ░▀▀▀ ▀▀▀ ░░ ▀░▀▀ ▀▀▀ ░░▀░░ ▀▀▀ ▀░▀▀ ▀▀▀ ▀▀▀ ░░ █▀▀▀ ▀░▀▀ ▀▀▀▀ ▀░▀ ▄▄▄█  "
-  echo
-  echo
+  echo   #####  #     # ###                                                                                                
+  echo  #     # #     #  #        #####  ###### #    # ###### #####   ####  ######       #####  #####   ####  #    # #   # 
+  echo  #       #     #  #        #    # #      #    # #      #    # #      #            #    # #    # #    #  #  #   # #  
+  echo   #####  #     #  #  ##### #    # #####  #    # #####  #    #  ####  #####  ##### #    # #    # #    #   ##     #   
+  echo        # #     #  #        #####  #      #    # #      #####       # #            #####  #####  #    #   ##     #   
+  echo  #     # #     #  #        #   #  #       #  #  #      #   #  #    # #            #      #   #  #    #  #  #    #   
+  echo   #####   #####  ###       #    # ######   ##   ###### #    #  ####  ######       #      #    #  ####  #    #   #   
 }
 
 ###################################
@@ -785,7 +786,6 @@ validate_path() {
 ###################################
 generate_path_cdn() {
   CDNGRPC=$(eval ${generate[path]})
-  CDNXHTTP=$(eval ${generate[path]})
   CDNHTTPU=$(eval ${generate[path]})
   CDNWS=$(eval ${generate[path]})
 }
@@ -833,8 +833,8 @@ data_entry() {
       out_data " $(text 50) "
       out_data " $(text 51) "
       echo
-      out_data " $(text 52)" "type \$env:USERPROFILE\.ssh\id_rsa.pub | ssh -p 22 ${USERNAME}@${IP4} \"cat >> ~/.ssh/authorized_keys\""
-      out_data " $(text 53)" "ssh-copy-id -p 22 ${USERNAME}@${IP4}"
+      out_data " $(text 52)" "type \$env:USERPROFILE\.ssh\id_rsa.pub | ssh -p 1000 ${USERNAME}@${IP4} \"cat >> ~/.ssh/authorized_keys\""
+      out_data " $(text 53)" "ssh-copy-id -p 1000 ${USERNAME}@${IP4}"
       echo
       # Цикл проверки наличия ключей
       while true; do
@@ -1446,24 +1446,6 @@ location /${SUB_JSON_PATH} {
 EOF
 }
 
-location_xhttp() {
-  cat > /etc/nginx/locations/xhttp.conf <<EOF
-# XHTTP
-location /${CDNXHTTP} {
-  grpc_pass grpc://unix:/dev/shm/uds2023.sock;
-  grpc_buffer_size         16k;
-  grpc_socket_keepalive    on;
-  grpc_read_timeout        1h;
-  grpc_send_timeout        1h;
-  grpc_set_header Connection         "";
-  grpc_set_header X-Forwarded-For    \$proxy_add_x_forwarded_for;
-  grpc_set_header X-Forwarded-Proto  \$scheme;
-  grpc_set_header X-Forwarded-Port   \$server_port;
-  grpc_set_header Host               \$host;
-  grpc_set_header X-Forwarded-Host   \$host;
-}
-EOF
-}
 
 location_cdn() {
   cat > /etc/nginx/locations/grpc_ws.conf <<EOF
@@ -1521,7 +1503,6 @@ nginx_setup() {
   location_panel
   location_sub
   location_sub_json
-  location_xhttp
   location_cdn
 
   systemctl daemon-reload
@@ -1535,8 +1516,8 @@ nginx_setup() {
 ### Key generation
 ###################################
 generate_keys() {
-  # Генерация пары ключей X25519 с использованием xray
-  local KEY_PAIR=$(/usr/local/x-ui/bin/xray-linux-amd64 x25519)
+  # Генерация пары ключей X25519 с использованием sing-box
+  local KEY_PAIR=$(/usr/local/s-ui/bin/sing-box generate reality-keypair)
   local PRIVATE_KEY=$(echo "$KEY_PAIR" | grep "Private key:" | awk '{print $3}')
   local PUBLIC_KEY=$(echo "$KEY_PAIR" | grep "Public key:" | awk '{print $3}')
 
@@ -1570,54 +1551,6 @@ EOF
   )
 }
 
-###################################
-### xhttp
-###################################
-settings_xhttp() {
-  STREAM_SETTINGS_XHTTP=$(cat <<EOF
-{
-  "network": "xhttp",
-  "security": "none",
-  "externalProxy": [
-    {
-      "forceTls": "tls",
-      "dest": "${DOMAIN}",
-      "port": 443,
-      "remark": ""
-    }
-  ],
-  "xhttpSettings": {
-    "path": "/${CDNXHTTP}",
-    "host": "",
-    "headers": {},
-    "scMaxBufferedPosts": 30,
-    "scMaxEachPostBytes": "1000000",
-    "noSSEHeader": false,
-    "xPaddingBytes": "100-1000",
-    "mode": "packet-up"
-  },
-  "sockopt": {
-    "acceptProxyProtocol": false,
-    "tcpFastOpen": true,
-    "mark": 0,
-    "tproxy": "off",
-    "tcpMptcp": true,
-    "tcpNoDelay": true,
-    "domainStrategy": "UseIP",
-    "tcpMaxSeg": 1440,
-    "dialerProxy": "",
-    "tcpKeepAliveInterval": 0,
-    "tcpKeepAliveIdle": 300,
-    "tcpUserTimeout": 10000,
-    "tcpcongestion": "bbr",
-    "V6Only": false,
-    "tcpWindowClamp": 600,
-    "interface": ""
-  }
-}
-EOF
-  )
-}
 
 ###################################
 ### Httpu
@@ -1980,7 +1913,6 @@ EOF
 update_stream_settings_db() {
   sqlite3 $DEST_DB <<EOF
 UPDATE inbounds SET stream_settings = '$STREAM_SETTINGS_GRPC' WHERE LOWER(remark) LIKE '%grpc%';
-UPDATE inbounds SET stream_settings = '$STREAM_SETTINGS_XHTTP' WHERE LOWER(remark) LIKE '%xhttp%';
 UPDATE inbounds SET stream_settings = '$STREAM_SETTINGS_HTTPU' WHERE LOWER(remark) LIKE '%httpu%';
 UPDATE inbounds SET stream_settings = '$STREAM_SETTINGS_WS' WHERE LOWER(remark) LIKE '%ws%';
 UPDATE inbounds SET stream_settings = '$STREAM_SETTINGS_STEAL' WHERE LOWER(remark) LIKE '%steal%';
@@ -1994,7 +1926,6 @@ EOF
 update_sniffing_settings_db() {
   sqlite3 $DEST_DB <<EOF
 UPDATE inbounds SET sniffing = '$SNIFFING' WHERE LOWER(remark) LIKE '%grpc%';
-UPDATE inbounds SET sniffing = '$SNIFFING' WHERE LOWER(remark) LIKE '%xhttp%';
 UPDATE inbounds SET sniffing = '$SNIFFING' WHERE LOWER(remark) LIKE '%httpu%';
 UPDATE inbounds SET sniffing = '$SNIFFING' WHERE LOWER(remark) LIKE '%ws%';
 UPDATE inbounds SET sniffing = '$SNIFFING' WHERE LOWER(remark) LIKE '%steal%';
@@ -2041,7 +1972,6 @@ EOF
 ###################################
 change_db() {
   settings_grpc
-  settings_xhttp
   settings_httpu
   settings_ws
   settings_steal
@@ -2167,7 +2097,7 @@ enabling_security() {
   case "$SYSTEM" in
     Debian|Ubuntu)
       ufw --force reset
-      ufw limit 22/tcp comment 'SSH'
+      ufw limit 1000/tcp comment 'SSH'
       ufw allow 443/tcp comment 'WEB'
       ufw insert 1 deny from "$BLOCK_ZONE_IP"
       ufw --force enable
@@ -2175,7 +2105,7 @@ enabling_security() {
 
     CentOS|Fedora)
       systemctl enable --now firewalld
-      firewall-cmd --permanent --zone=public --add-port=22/tcp
+      firewall-cmd --permanent --zone=public --add-port=1000/tcp
       firewall-cmd --permanent --zone=public --add-port=443/tcp
       firewall-cmd --permanent --zone=public --add-rich-rule="rule family='ipv4' source address='$BLOCK_ZONE_IP' reject"
       firewall-cmd --reload
@@ -2203,7 +2133,7 @@ ssh_setup() {
 # ============================================
 
 # Основной порт SSH (можно изменить на нужный)
-Port 22
+Port 1000
 
 # Запрещаем вход под root с паролем, но разрешаем по ключу
 PermitRootLogin prohibit-password
@@ -2243,7 +2173,7 @@ ChallengeResponseAuthentication no
 KerberosAuthentication no
 EOF
 
-    bash <(curl -Ls https://raw.githubusercontent.com/cortez24rus/motd/refs/heads/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/motd/refs/heads/main/install.sh)
     systemctl restart sshd
     tilda "$(text 10)"
   fi
@@ -2260,7 +2190,7 @@ data_output() {
   out_data " $(text 59) " "https://${DOMAIN}/${WEB_BASE_PATH}/"
   out_data " $(text 60) " "${SUB_URI}user"
   echo
-  out_data " $(text 62) " "ssh -p 22 ${USERNAME}@${IP4}"
+  out_data " $(text 62) " "ssh -p 1000 ${USERNAME}@${IP4}"
   echo
   out_data " $(text 63) " "$USERNAME"
   out_data " $(text 64) " "$PASSWORD"
