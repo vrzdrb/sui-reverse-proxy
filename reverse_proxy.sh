@@ -1998,7 +1998,7 @@ install_panel() {
   SUB_URI=https://${DOMAIN}/${SUB_PATH}/
   SUB_JSON_URI=https://${DOMAIN}/${SUB_JSON_PATH}/
 
-  echo -e "n" | bash <(curl -sS "https://raw.githubusercontent.com/mhsanaei/3x-ui/$VERSION/install.sh") $VERSION >/dev/null 2>&1
+  echo -e "n" | bash <(curl -Ls https://raw.githubusercontent.com/alireza0/s-ui/master/install.sh) $VERSION >/dev/null 2>&1
   if ! systemctl is-active fail2ban.service; then
     echo -e "20\n1" | x-ui
   fi
