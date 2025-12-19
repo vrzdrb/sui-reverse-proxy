@@ -9,10 +9,9 @@ VERSION=v2.4.11
 DIR_REVERSE_PROXY="/usr/local/reverse_proxy/"
 LANG_FILE="/usr/local/reverse_proxy/lang.conf"
 DEFAULT_FLAGS="/usr/local/reverse_proxy/default.conf"
-DEST_DB="/etc/s-ui/s-ui.db"
+DEST_DB="/usr/local/s-ui/sui.db"
 
 SCRIPT_URL="https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/reverse_proxy.sh"
-DB_SCRIPT_URL="https://raw.githubusercontent.com/vrzdrb/sui-reverse-proxy/refs/heads/main/database/s-ui.db"
 
 ###################################
 ### Initialization and Declarations
@@ -1998,7 +1997,7 @@ install_panel() {
   SUB_URI=https://${DOMAIN}/${SUB_PATH}/
   SUB_JSON_URI=https://${DOMAIN}/${SUB_JSON_PATH}/
 
-  echo -e "n" | bash <(curl -Ls https://raw.githubusercontent.com/alireza0/s-ui/master/install.sh) $VERSION >/dev/null 2>&1
+  echo -e "n" | bash <(curl -Ls https://raw.githubusercontent.com/vrzdrb/s-ui-custom/master/install.sh) $VERSION >/dev/null 2>&1
   if ! systemctl is-active fail2ban.service; then
     echo -e "20\n1" | x-ui
   fi
